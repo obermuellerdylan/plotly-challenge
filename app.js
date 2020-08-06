@@ -17,7 +17,15 @@ function builtPlot() {
             orientation: 'h'
         }];
 
-        Plotly.react('bar', data1)
+        var layout1 = {
+            showlegend: false,
+            title: 'Top 10 OTUs on Patient',
+            xaxis: {
+                title: {
+                  text: 'OTU IDs'}}
+            };
+
+        Plotly.react('bar', data1, layout1)
 
         // BUBBLE CHART
         var data2 = [{
@@ -35,7 +43,11 @@ function builtPlot() {
         var layout = {
         showlegend: false,
         height: 600,
-        width: 1200
+        width: 1200,
+        title: 'Patient Samples',
+        xaxis: {
+            title: {
+              text: 'OTU IDs'}}
         };
           
         Plotly.react('bubble', data2, layout);
@@ -125,12 +137,24 @@ function getData() {
 }
 
 function updatePlotly(newdata1, newdata2, metadata) {
+    var layout1 = {
+        showlegend: false,
+        title: 'Top 10 OTUs on Patient',
+        xaxis: {
+            title: {
+              text: 'OTU IDs'}}
+        };
+    
     var layout2 = {
         showlegend: false,
         height: 600,
-        width: 1200
+        width: 1200,
+        title: 'Patient Samples',
+        xaxis: {
+            title: {
+              text: 'OTU IDs'}}
         };
-    Plotly.react('bar',newdata1);
+    Plotly.react('bar',newdata1, layout1);
     Plotly.react('bubble', newdata2, layout2);
 
     box = d3.selectAll('#sample-metadata');
